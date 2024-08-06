@@ -1,0 +1,16 @@
+#cardpizza {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card-item {
+    width: 100%;
+  }
+  
+  @media (min-width: 576px) {
+    .card-item {
+      width: 16rem;
+    }
+  }
+  
