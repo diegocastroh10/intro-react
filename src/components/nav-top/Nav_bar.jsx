@@ -12,7 +12,7 @@ const Nav_bar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#"><FontAwesomeIcon className='pe-3' icon={faPizzaSlice} />Pizzería Linares</Navbar.Brand>
+        <Navbar.Brand href="/#"><FontAwesomeIcon className='pe-3' icon={faPizzaSlice} />Pizzería Linares</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -20,7 +20,7 @@ const Nav_bar = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">
+            <Nav.Link href="/#">
               <Button variant="outline-primary">
                 <FontAwesomeIcon className='pe-2' icon={faHouseUser} />Home
               </Button>
@@ -40,12 +40,12 @@ const Nav_bar = () => {
               </>
             ) : (
               <>
-                <Nav.Link href="#login">
+                <Nav.Link href="/login">
                   <Button variant="outline-primary">
                     <FontAwesomeIcon className='pe-2' icon={faUsers} />Login
                   </Button>
                 </Nav.Link>
-                <Nav.Link href="#register">
+                <Nav.Link href="/sesionUser">
                   <Button variant="outline-primary">
                     <FontAwesomeIcon className='pe-2' icon={faFile} />Register
                   </Button>

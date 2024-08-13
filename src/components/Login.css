@@ -1,0 +1,19 @@
+.contenedorForm {
+    width: 100%;
+    max-width: 400px; /* Tamaño máximo para pantallas grandes */
+    padding: 20px; /* Espaciado interno */
+    margin: 0 auto; /* Centrar en el contenedor */
+}
+
+@media (max-width: 768px) {
+    .contenedorForm {
+        width: 90%; /* Disminuir el ancho para pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedorForm {
+        width: 100%; /* Utilizar todo el ancho de la pantalla en dispositivos muy pequeños */
+        padding: 10px; /* Reducir el padding */
+    }
+}

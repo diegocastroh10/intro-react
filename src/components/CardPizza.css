@@ -2,15 +2,23 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
   }
   
   .card-item {
     width: 100%;
   }
   
-  @media (min-width: 576px) {
-    .card-item {
-      width: 16rem;
+  @media (max-width: 768px) {
+    #cardpizza {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
   }
   
+  @media (max-width: 480px) {
+    #cardpizza {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+  }

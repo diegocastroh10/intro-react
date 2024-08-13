@@ -1,15 +1,28 @@
+import Home from './components/Home';
+import SesionUser from './components/SesionUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav_bar from './components/nav-top/Nav_bar';
 import Footer from './components/Footer';
-import Home from './components/Home';
+import Login from './components/Login';
 import { Container } from 'react-bootstrap';
 import './App.css';
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 function App() {
   return (
-    <Container fluid id='grid-container' className="d-flex flex-column">
+    <Container fluid id='grid-container' className="d-grid">
       <Nav_bar className="header" />
-      <Home className="section" />
+      {/* <Home className="content" /> */}
+      {/* <SesionUser className="content" /> */}
+      {/* <Login className="content"  /> */}
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/sesionUser' element={<SesionUser />} />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </Router>
       <Footer className="footer" />
     </Container>
   );

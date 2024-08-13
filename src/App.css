@@ -33,7 +33,7 @@
   grid-area: footer;
 } */
 
-#grid-container {
+/* #grid-container {
   display: grid;
   grid-template-rows: auto 1fr 2fr;
   height: auto;
@@ -49,6 +49,34 @@
 
 .footer {
   grid-row: 3;
+} */
+
+#grid-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
 }
+
+.header {
+  grid-row: 1 / 2;
+}
+
+.content {
+  grid-row: 2 / 3;
+  overflow-y: auto; /* Permite scroll si el contenido es demasiado grande */
+}
+
+.footer {
+  grid-row: 3 / 4;
+  align-self: end; /* Asegura que el footer esté en la parte inferior */
+}
+
+@media (max-width: 768px) {
+  #grid-container {
+    grid-template-rows: auto 1fr auto;
+  }
+}
+
+
 
 
