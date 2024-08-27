@@ -1,0 +1,22 @@
+.pizza-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Asegura que la imagen se ajuste correctamente sin deformarse */
+}
+
+.pizza-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Añade un espacio entre las imágenes si es necesario */
+}
+
+.pizza-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.ingredientes {
+    display: flex;
+    flex-direction: column;
+}

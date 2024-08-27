@@ -1,15 +1,16 @@
-// import Home from './components/Home';
-// import SesionUser from './components/SesionUser';
+import Home from './components/Home';
+import SesionUser from './components/SesionUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav_bar from './components/nav-top/Nav_bar';
 import Footer from './components/Footer';
-// import Login from './components/Login';
+import Login from './components/Login';
 // import AddTarea from './components/AddTarea';
 import { Container } from 'react-bootstrap';
 import Cart from './components/Cart';
+import Pizza from './components/Pizza';
 import './App.css';
 
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
@@ -21,11 +22,12 @@ function App() {
         <div className="content">
           {/* <AddTarea /> */}
           <Cart />
-          {/* <Routes>
+          <Pizza />
+          <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/sesionUser' element={<SesionUser />} />
             <Route path='/login' element={<Login />} />
-          </Routes> */}
+          </Routes>
         </div>
 
         {/* Footer */}
