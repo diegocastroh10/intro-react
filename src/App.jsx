@@ -1,34 +1,42 @@
-import Home from './components/Home';
-import SesionUser from './components/SesionUser';
+// import Home from './components/Home';
+// import SesionUser from './components/SesionUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav_bar from './components/nav-top/Nav_bar';
 import Footer from './components/Footer';
-import Login from './components/Login';
+// import Login from './components/Login';
+// import AddTarea from './components/AddTarea';
 import { Container } from 'react-bootstrap';
+import Cart from './components/Cart';
 import './App.css';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   return (
-    <Container fluid id='grid-container' className="d-grid">
-      <Nav_bar className="header" />
-      {/* <Home className="content" /> */}
-      {/* <SesionUser className="content" /> */}
-      {/* <Login className="content"  /> */}
-      <Router>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/sesionUser' element={<SesionUser />} />
-          <Route path='/login' element={<Login />} />
-        </Routes>
-      </Router>
-      <Footer className="footer" />
-    </Container>
+    <Router>
+      <Container fluid id='grid-container'>
+        {/* Barra de navegación */}
+        <Nav_bar className="header" />
+
+        <div className="content">
+          {/* <AddTarea /> */}
+          <Cart />
+          {/* <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/sesionUser' element={<SesionUser />} />
+            <Route path='/login' element={<Login />} />
+          </Routes> */}
+        </div>
+
+        {/* Footer */}
+        <Footer className="footer" />
+      </Container>
+    </Router>
   );
 }
 
 export default App;
+
 
 
 /* 

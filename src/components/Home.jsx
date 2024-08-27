@@ -1,32 +1,49 @@
 import Header from "./Header";
 import CardPizza from "./CardPizza";
+import { useState } from "react";
+import { pizzaCart } from "../js/pizzas";
 
 const Home = () => {
+  const [listaPizza] = useState(pizzaCart);
+
+  // Dividir el arreglo en dos: primeras 3 y últimas 3
+  const primeraFila = listaPizza.slice(0, 3);
+  const segundaFila = listaPizza.slice(3, 6);
+
   return (
     <div className="d-flex flex-column align-items-center justify-content-center">
       <Header />
-      <div className="d-flex flex-row flex-wrap flex-xs-column">
-        <CardPizza
-          name="Pizza Napolitana"
-          price={6950}
-          ingredients={["mozzarella, ", "tomates, ", "jamón, ", "orégano"]}
-          img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c"
-        />
-        <CardPizza
-          name="Pizza Española"
-          price={6950}
-          ingredients={["mozzarella, ", "gorgonzola, ", "parmesano, ", "provolone"]}
-          img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fcheese-164872_640_com.jpg?alt=media&token=18b2b821-4d0d-43f2-a1c6-8c57bc388fab"
-        />
-        <CardPizza
-          name="Pizza Pepperoni"
-          price={6950}
-          ingredients={["mozzarella, ", "pepperoni, ", "orégano"]}
-          img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3"
-        />
+
+      {/* Primera fila de pizzas */}
+      <div className="d-flex flex-row flex-wrap justify-content-center mb-4">
+        {primeraFila.map((pizza) => (
+          <CardPizza
+            key={pizza.id}
+            name={pizza.name}
+            price={pizza.price}
+            ingredients={pizza.ingredients}
+            img={pizza.img}
+            desc={pizza.desc}
+          />
+        ))}
+      </div>
+
+      {/* Segunda fila de pizzas */}
+      <div className="d-flex flex-row flex-wrap justify-content-center">
+        {segundaFila.map((pizza) => (
+          <CardPizza
+            key={pizza.id}
+            name={pizza.name}
+            price={pizza.price}
+            ingredients={pizza.ingredients}
+            img={pizza.img}
+            desc={pizza.desc}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
 export default Home;
+
