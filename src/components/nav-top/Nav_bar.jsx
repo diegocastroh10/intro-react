@@ -28,7 +28,7 @@ const Nav_bar = () => {
             </Link>
             {token ? (
               <>
-                <Link to="/sesionUser">
+                <Link to="/profile">
                   <Button variant="outline-primary">
                     <FontAwesomeIcon className='pe-2' icon={faIdBadge} />Profile
                   </Button>
@@ -49,6 +49,11 @@ const Nav_bar = () => {
                 <Link to="/sesionUser">
                   <Button variant="outline-primary">
                     <FontAwesomeIcon className='pe-2' icon={faFile} />Register
+                  </Button>
+                </Link>
+                <Link to="/pizza/p001">
+                  <Button variant="outline-primary">
+                    <FontAwesomeIcon className='pe-2' icon={faFile} />Pizzas
                   </Button>
                 </Link>
               </>
