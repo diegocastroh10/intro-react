@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, Button } from 'react-bootstrap';
-import './SesionUser.css';
+import '../css/SesionUser.css';
 
 const SesionUser = () => {
     // const [state, setState] = useState(0);

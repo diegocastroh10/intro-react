@@ -1,7 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
 import image from '../assets/bannerpizza1.jpg';
 import Container from 'react-bootstrap/Container';
-import './Header.css';
+import '../css/Header.css';
 
 const Header = () => {
   return (

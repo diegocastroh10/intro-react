@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouseUser, faIdBadge, faRightFromBracket, faUsers, faFile, faCartShopping, faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,43 +21,44 @@ const Nav_bar = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="/#">
+            <Link to="/">
               <Button variant="outline-primary">
                 <FontAwesomeIcon className='pe-2' icon={faHouseUser} />Home
               </Button>
-            </Nav.Link>
+            </Link>
             {token ? (
               <>
-                <Nav.Link href="#profile">
+                <Link to="/sesionUser">
                   <Button variant="outline-primary">
                     <FontAwesomeIcon className='pe-2' icon={faIdBadge} />Profile
                   </Button>
-                </Nav.Link>
-                <Nav.Link href="#logout">
+                </Link>
+                <Link to="/login">
                   <Button variant="outline-primary">
                     <FontAwesomeIcon className='pe-2' icon={faRightFromBracket} />Logout
                   </Button>
-                </Nav.Link>
+                </Link>
               </>
             ) : (
               <>
-                <Nav.Link href="/login">
+                <Link to="/login">
                   <Button variant="outline-primary">
                     <FontAwesomeIcon className='pe-2' icon={faUsers} />Login
                   </Button>
-                </Nav.Link>
-                <Nav.Link href="/sesionUser">
+                </Link>
+                <Link to="/sesionUser">
                   <Button variant="outline-primary">
                     <FontAwesomeIcon className='pe-2' icon={faFile} />Register
                   </Button>
-                </Nav.Link>
+                </Link>
               </>
             )}
           </Nav>
-
+          <Link to="/cart">          
           <Button variant="outline-success">
             <FontAwesomeIcon className='pe-2' icon={faCartShopping} />Total: ${total}
           </Button>
+          </Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

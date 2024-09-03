@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { pizzaCart } from '../js/pizzas'; // Asegúrate de que la ruta sea correcta
-import './Cart.css';
+import '../css/Cart.css';
 
 const Cart = () => {
   const [cart, setCart] = useState(pizzaCart);

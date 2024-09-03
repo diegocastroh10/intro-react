@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
-import './CardPizza.css';
+import '../css/CardPizza.css';
 
 const CardPizza = (props) => {
   // Formatear el precio con separador de miles

@@ -1,32 +1,42 @@
-import Home from './components/Home';
-import SesionUser from './components/SesionUser';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './pages/Home';
+import SesionUser from './pages/SesionUser';
 import Nav_bar from './components/nav-top/Nav_bar';
 import Footer from './components/Footer';
-import Login from './components/Login';
-// import AddTarea from './components/AddTarea';
+import Login from './pages/Login';
+import Cart from './pages/Cart';
+import Pizza from './pages/Pizza';
+import Profile from './components/Profile';
+import NotFound from './components/NotFound';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
-import Cart from './components/Cart';
-import Pizza from './components/Pizza';
+
+
 import './App.css';
 
+// Importa BrowserRouter y Routes correctamente
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <Router>
+    <Router> {/* Envolvemos toda la app en BrowserRouter */}
       <Container fluid id='grid-container'>
         {/* Barra de navegación */}
         <Nav_bar className="header" />
 
         <div className="content">
-          {/* <AddTarea /> */}
-          <Cart />
-          <Pizza />
+          {/* <Cart />
+          <Pizza /> */}
+
+          {/* Define las rutas dentro del componente Routes */}
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/sesionUser' element={<SesionUser />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/pizza/p001' element={<Pizza />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/404' element={<NotFound />} />
           </Routes>
         </div>
 

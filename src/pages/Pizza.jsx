@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card } from 'react-bootstrap';
 
-import './Pizza.css'; // Asegúrate de importar el archivo CSS si lo usas
+import '../css/Pizza.css';
 
 const Pizza = () => {
     const [pizzas, setPizzas] = useState([]);
