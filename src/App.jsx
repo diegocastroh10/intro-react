@@ -7,47 +7,51 @@ import Cart from './pages/Cart';
 import Pizza from './pages/Pizza';
 import Profile from './components/Profile';
 import NotFound from './components/NotFound';
+import CarritoCompras from './components/CarritoCompras';
+import CartProvider from './context/CartContext'; // Importa el CartProvider
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 
-
 import './App.css';
-
-// Importa BrowserRouter y Routes correctamente
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <Router> {/* Envolvemos toda la app en BrowserRouter */}
-      <Container fluid id='grid-container'>
-        {/* Barra de navegación */}
-        <Nav_bar className="header" />
+    <CartProvider> {/* Envuelve tu aplicación con el CartProvider */}
+      <Router>
+        <Container fluid id='grid-container'>
+          {/* Barra de navegación */}
+          <Nav_bar className="header" />
 
-        <div className="content">
-          {/* <Cart />
-          <Pizza /> */}
+          <div className="content">
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/sesionUser' element={<SesionUser />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='/pizza/p001' element={<Pizza />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/404' element={<NotFound />} />
+            </Routes>
+          </div>
 
-          {/* Define las rutas dentro del componente Routes */}
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/sesionUser' element={<SesionUser />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/pizza/p001' element={<Pizza />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/404' element={<NotFound />} />
-          </Routes>
-        </div>
+          {/* Carrito lateral */}
+          <div className="carrito-lateral">
+            <CarritoCompras />
+          </div>
 
-        {/* Footer */}
-        <Footer className="footer" />
-      </Container>
-    </Router>
+          {/* Footer */}
+          <Footer className="footer" />
+        </Container>
+      </Router>
+    </CartProvider>
   );
 }
 
 export default App;
+
+
 
 
 

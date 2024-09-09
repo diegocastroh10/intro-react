@@ -5,9 +5,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouseUser, faIdBadge, faRightFromBracket, faUsers, faFile, faCartShopping, faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
-
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 const Nav_bar = () => {
-  let total = "25.000";
+  const { totalPrice } = useContext(CartContext); // Consumimos el precio total del carrito
   const token = false; // Cambia esto a true para probar el otro caso
 
   return (
@@ -60,9 +61,10 @@ const Nav_bar = () => {
             )}
           </Nav>
           <Link to="/cart">          
-          <Button variant="outline-success">
-            <FontAwesomeIcon className='pe-2' icon={faCartShopping} />Total: ${total}
-          </Button>
+            <Button variant="outline-success">
+              <FontAwesomeIcon className='pe-2' icon={faCartShopping} />
+              Total: ${totalPrice.toLocaleString('es-CL')}
+            </Button>
           </Link>
         </Navbar.Collapse>
       </Container>
