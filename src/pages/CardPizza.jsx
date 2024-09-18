@@ -2,8 +2,7 @@
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import '../css/CardPizza.css';
 import { CartContext } from '../context/CartContext'; // Importamos el contexto del carrito
 
@@ -33,7 +32,10 @@ const CardPizza = (props) => {
             {props.price.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}
           </Card.Text>
           <div className='d-flex flex-row justify-content-between'>
-            <Button variant="primary">Ver más</Button>
+            {/* Agregamos Link para redirigir a la página de Pizza con el id */}
+            <Link to={`/pizza/${props.id}`}>
+              <Button variant="primary">Ver más</Button>
+            </Link>
             <Button variant="primary" onClick={handleAddToCart}>Añadir</Button>
           </div>
         </Card.Footer>
@@ -43,4 +45,3 @@ const CardPizza = (props) => {
 };
 
 export default CardPizza;
-

@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouseUser, faIdBadge, faRightFromBracket, faUsers, faFile, faCartShopping, faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { UserContext } from '../../context/EJContext'; // Importamos el UserContext
+
 const Nav_bar = () => {
   const { totalPrice } = useContext(CartContext); // Consumimos el precio total del carrito
-  const token = false; // Cambia esto a true para probar el otro caso
+  const { token, logout } = useContext(UserContext); // Consumimos el token y el método logout desde el contexto de usuario
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -34,11 +36,9 @@ const Nav_bar = () => {
                     <FontAwesomeIcon className='pe-2' icon={faIdBadge} />Profile
                   </Button>
                 </Link>
-                <Link to="/login">
-                  <Button variant="outline-primary">
-                    <FontAwesomeIcon className='pe-2' icon={faRightFromBracket} />Logout
-                  </Button>
-                </Link>
+                <Button variant="outline-primary" onClick={logout}> {/* Llamamos a logout al hacer clic */}
+                  <FontAwesomeIcon className='pe-2' icon={faRightFromBracket} />Logout
+                </Button>
               </>
             ) : (
               <>
@@ -60,7 +60,7 @@ const Nav_bar = () => {
               </>
             )}
           </Nav>
-          <Link to="/cart">          
+          <Link to="/cart">
             <Button variant="outline-success">
               <FontAwesomeIcon className='pe-2' icon={faCartShopping} />
               Total: ${totalPrice.toLocaleString('es-CL')}

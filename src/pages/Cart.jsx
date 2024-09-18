@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { pizzaCart } from '../js/pizzas'; // Asegúrate de que la ruta sea correcta
 import '../css/Cart.css';
+import { UserContext } from '../context/EJContext'; // Importamos el UserContext
 
 const Cart = () => {
   const [cart, setCart] = useState(pizzaCart);
+  const { token } = useContext(UserContext); // Consumimos el token del UserContext
 
   const increaseQuantity = (id) => {
     setCart(cart.map(item =>
@@ -45,7 +47,8 @@ const Cart = () => {
       ))}
       <div className="total-section">
         <h4>Total: {calculateTotal().toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}</h4>
-        <Button variant="success" className="mt-3">Pagar</Button>
+        {/* Deshabilitar el botón si el token es false */}
+        <Button variant="success" className="mt-3" disabled={!token}>Pagar</Button>
       </div>
     </div>
   );
