@@ -1,53 +1,44 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Form, Button } from 'react-bootstrap';
+import { UserContext } from '../context/EJContext'; // Importar el UserContext
 import '../css/Login.css';
 
 const Login = () => {
-    const [nombre, setNombre] = useState("");
-    const [contrasena, setContrasena] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
-    const [errorContrasena, setErrorContrasena] = useState(false);
-    const user = 'diego@latam.cl';
-    const pass = 'asd123';
+    const { login } = useContext(UserContext); // Obtener la función login del contexto
 
-    // Validar datos formulario -> De esta forma nos aseguramos el registro de los datos
-    const validarInput = (e) => {
+    // Validar datos formulario e iniciar sesión
+    const handleLogin = async (e) => {
         e.preventDefault();
-
-        if (nombre == '' || contrasena == '') {
-            setError(true);
-            return 
+      
+        if (email === '' || password === '') {
+          setError(true);
+          return;
         }
-    
-        if (contrasena.length < 6) {
-            alert('La contraseña debe tener al menos 6 caracteres.');
-            setErrorContrasena(true);
-            return;
-        }
-
-        if (nombre == user && contrasena == pass) {
-            alert('Has iniciado sesión con éxito. Bienvenido');
-        } else {
-            alert('Los datos son incorrectos. Reingresa tu información.')
-        }
-
+      
         setError(false);
-        setErrorContrasena(false)
-    };
+      
+        try {
+          await login(email, password);  // Aquí debes verificar que email y password tengan valores válidos
+        } catch (err) {
+          console.error('Error al iniciar sesión', err);
+        }
+      };
+      
 
     return (
         <div className="d-flex flex-column align-items-center justify-content-center">
             <h1>Iniciar sesión</h1>
             <div className='contenedorForm'>
-                <form onSubmit={validarInput}>
-                    {/* Formularios react-bootstrap */}
+                <form onSubmit={handleLogin}>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Correo</Form.Label>
-                        <Form.Control type="email" placeholder="pizzerialinares@gmail.com" onChange={ (e) => setNombre(e.target.value)} value={nombre} />
+                        <Form.Control type="email" placeholder="pizzerialinares@gmail.com" onChange={ (e) => setEmail(e.target.value)} value={email} />
 
                         <Form.Label>Contraseña</Form.Label>
-                        <Form.Control type="password" placeholder="*******" onChange={ (e) => setContrasena(e.target.value)} value={contrasena} />
-                        { errorContrasena ? <p className='error'>Modifica tu contraseña.</p> : null }
+                        <Form.Control type="password" placeholder="*******" onChange={ (e) => setPassword(e.target.value)} value={password} />
 
                         <Form.Text className="text-muted">
                             Cuida tus datos de usuario y no los compartas.
@@ -60,7 +51,7 @@ const Login = () => {
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;

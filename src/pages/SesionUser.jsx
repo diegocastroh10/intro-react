@@ -1,23 +1,25 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Form, Button } from 'react-bootstrap';
+import { UserContext } from '../context/EJContext'; 
 import '../css/SesionUser.css';
 
 const SesionUser = () => {
-    // const [state, setState] = useState(0);
+    const { register } = useContext(UserContext); // Obtener la función register del contexto
     const [nombre, setNombre] = useState("");
+    const [email, setEmail] = useState("");
     const [contrasena, setContrasena] = useState("");
     const [contrasena2, setContrasena2] = useState("");
     const [error, setError] = useState(false);
     const [validar, setValidar] = useState(false);
     const [errorContrasena, setErrorContrasena] = useState(false);
 
-    // Validar datos formulario -> De esta forma nos aseguramos el registro de los datos
-    const validarInput = (e) => {
+    // Validar datos formulario y registrar usuario
+    const validarInput = async (e) => {
         e.preventDefault();
 
-        if (nombre == '' || contrasena == '' || contrasena2 == '') {
+        if (nombre === '' || email === '' || contrasena === '' || contrasena2 === '') {
             setError(true);
-            return 
+            return;
         }
 
         if (contrasena !== contrasena2) {
@@ -26,9 +28,9 @@ const SesionUser = () => {
             setValidar(false);
             return;
         } else {
-            setValidar(true);
+            setErrorContrasena(false);
         }
-    
+
         if (contrasena.length < 6) {
             alert('La contraseña debe tener al menos 6 caracteres.');
             setErrorContrasena(true);
@@ -36,48 +38,45 @@ const SesionUser = () => {
             return;
         } else {
             setValidar(true);
-            alert('Usuario registrado.')
-
+            alert('Usuario registrado.');
         }
 
-
-
-        setError(false);
-        setErrorContrasena(false)
+        // Llama a la función register del contexto
+        await register(nombre, email, contrasena);
     };
 
     return (
-        <div className="d-flex flex-column align-items-center justify-content-center" >
+        <div className="d-flex flex-column align-items-center justify-content-center">
             <h1>Registrar usuario</h1>
-            {/* <button onClick={ () => setState(state + 1) }>Contador: {state}</button> */}
             <div className='contenedorForm'>
                 <form onSubmit={validarInput}>
-                    {/* Formularios react-bootstrap */}
                     <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Correo</Form.Label>
-                    <Form.Control type="email" placeholder="pizzerialinares@gmail.com" onChange={ (e) => setNombre(e.target.value)} value={nombre} />
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control type="text" placeholder="Nombre de usuario" onChange={(e) => setNombre(e.target.value)} value={nombre} />
 
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control type="password" placeholder="*******" onChange={ (e) => setContrasena(e.target.value)} value={contrasena} />
-                    { errorContrasena ? <p className='error'>Modifica tu contraseña.</p> : null }
+                        <Form.Label>Correo</Form.Label>
+                        <Form.Control type="email" placeholder="pizzerialinares@gmail.com" onChange={(e) => setEmail(e.target.value)} value={email} />
 
-                    <Form.Label>Confirmar contraseña</Form.Label>
-                    <Form.Control type="password" placeholder="*******" onChange={ (e) => setContrasena2(e.target.value)} value={contrasena2} />
+                        <Form.Label>Contraseña</Form.Label>
+                        <Form.Control type="password" placeholder="*******" onChange={(e) => setContrasena(e.target.value)} value={contrasena} />
+                        {errorContrasena ? <p className='error'>Modifica tu contraseña.</p> : null}
 
-                    <Form.Text className="text-muted">
-                        Cuida tus datos de usuario y no los compartas.   
-                    </Form.Text>
-                    <Button variant="primary" type="submit">
-                            Ingresar
-                    </Button>
+                        <Form.Label>Confirmar contraseña</Form.Label>
+                        <Form.Control type="password" placeholder="*******" onChange={(e) => setContrasena2(e.target.value)} value={contrasena2} />
+
+                        <Form.Text className="text-muted">
+                            Cuida tus datos de usuario y no los compartas.
+                        </Form.Text>
+                        <Button variant="primary" type="submit">
+                            Registrar
+                        </Button>
                     </Form.Group>
-                    { error ? <p className='error'>Completa todos los campos.</p> : null }
-                    { validar ? <p className='succes'>Has creado tu usuario.</p> : null }
-
+                    {error ? <p className='error'>Completa todos los campos.</p> : null}
+                    {validar ? <p className='succes'>Has creado tu usuario.</p> : null}
                 </form>
             </div>
         </div>
-    )
+    );
 }
 
-export default SesionUser
+export default SesionUser;

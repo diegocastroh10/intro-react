@@ -28,6 +28,7 @@ function App() {
     const { token } = useContext(UserContext);
     return token ? <Navigate to="/" /> : children;
   };
+  
 
   return (
     <UserProvider>

@@ -18,9 +18,13 @@ const CartProvider = ({ children }) => {
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, totalPrice }}>
-      {children}
-    </CartContext.Provider>
+    <div>
+      <CartContext.Provider value={{ cartItems, addToCart, totalPrice }}>
+        {children}
+      </CartContext.Provider>
+      <button></button>
+    </div>
+
   );
 };
 

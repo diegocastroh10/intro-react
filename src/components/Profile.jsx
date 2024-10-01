@@ -1,6 +1,18 @@
+import { useContext, useEffect } from 'react';
+import { UserContext } from '../context/EJContext';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
 
 export default function Profile() {
+  const { userProfile, fetchUserProfile } = useContext(UserContext);
+
+  useEffect(() => {
+    fetchUserProfile(); // Obtener el perfil del usuario al montar el componente
+  }, [fetchUserProfile]);
+
+  if (!userProfile) {
+    return <div>Cargando perfil...</div>; // Mensaje de carga mientras se obtiene el perfil
+  }
+
   return (
     <div className="vh-100" style={{ backgroundColor: '#9de2ff' }}>
       <MDBContainer>
@@ -17,24 +29,9 @@ export default function Profile() {
                       fluid />
                   </div>
                   <div className="flex-grow-1 ms-3">
-                    <MDBCardTitle>Danny McLoan</MDBCardTitle>
-                    <MDBCardText>locodanny@gmail.com</MDBCardText>
-
-                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2"
-                      style={{ backgroundColor: '#efefef' }}>
-                      <div>
-                        <p className="small text-muted mb-1">Articles</p>
-                        <p className="mb-0">41</p>
-                      </div>
-                      <div className="px-3">
-                        <p className="small text-muted mb-1">Followers</p>
-                        <p className="mb-0">976</p>
-                      </div>
-                      <div>
-                        <p className="small text-muted mb-1">Rating</p>
-                        <p className="mb-0">8.5</p>
-                      </div>
-                    </div>
+                    <MDBCardTitle>{userProfile.name || 'Nombre del usuario'}</MDBCardTitle>
+                    <MDBCardText>{userProfile.email || 'Correo del usuario'}</MDBCardText>
+                    {/* Agrega más información del perfil aquí */}
                     <div className="d-flex pt-1">
                       <MDBBtn outline className="me-1 flex-grow-1">Ver más</MDBBtn>
                       <MDBBtn className="flex-grow-1">Cerrar sesión</MDBBtn>
